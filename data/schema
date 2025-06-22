@@ -1,7 +1,0 @@
-CREATE TABLE IF NOT EXISTS customers (
-    customer_id VARCHAR(255),
-    customer_unique_id VARCHAR(255),
-    customer_zip_code_prefix INT,
-    customer_city VARCHAR(255),
-    customer_state VARCHAR(255)
-);

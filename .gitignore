@@ -135,6 +135,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+/chegadas/ # virtualenv
 
 # Spyder project settings
 .spyderproject
