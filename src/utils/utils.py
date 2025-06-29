@@ -1,9 +1,28 @@
 import os
+import datetime
 from pyspark.sql import SparkSession, DataFrame
 from pyspark.sql.types import (
     StringType, IntegerType, LongType, FloatType, DoubleType,
     BooleanType, DateType, TimestampType
 )
+from pyspark.sql.functions import col
+
+def dia_de_hoje() -> str:
+    """
+    Retorna a data atual no formato 'YYYYMMDD' como uma string.
+
+    Returns:
+        str: A data atual formatada como 'YYYYMMDD'.
+    """
+    # Obtém a data e hora atuais
+    data_atual = datetime.datetime.now()
+    
+    # Formata a data para a string 'YYYYMMDD'
+    data_formatada = data_atual.strftime("%Y%m%d")
+    
+    print(f"Data de hoje (YYYYMMDD): {data_formatada}")
+    return data_formatada
+
 
 def read_csv(spark_session: SparkSession, caminho_do_arquivo_csv: str): # <<< Agora a função recebe o parâmetro spark_session
     """
@@ -154,3 +173,26 @@ def gerar_e_salvar_create_table_mysql(df: DataFrame):
     
     # <<< AQUI ESTÁ A MUDANÇA: RETORNAR A STRING SQL >>>
     return create_table_sql
+
+def data_processing(spark_df: DataFrame, hoje_formatado: str) -> DataFrame:
+    """
+    Recebe um dataframe PySpark e adiciona uma coluna chamada 'processado_dia'
+    com a data atual de processamento no formato YYYYMMDD (como String).
+
+    Args:
+        spark_df (DataFrame): O DataFrame PySpark de entrada a ser processado.
+
+    Returns:
+        DataFrame: O DataFrame PySpark com a nova coluna 'processado_dia' adicionada.
+                   Retorna None se o DataFrame de entrada for None.
+    """
+    if spark_df is None:
+        print("Erro: DataFrame de entrada é None. Não é possível adicionar a coluna 'processado_dia'.")
+        return None
+
+    print("Adicionando coluna 'processado_dia' ao DataFrame no formato YYYYMMDD...")    
+    # Adiciona a coluna com o valor fixo para todas as linhas
+    processed_df = spark_df.withColumn("processado_dia", col(hoje_formatado)) 
+    
+    print("Coluna 'processado_dia' adicionada com sucesso no formato YYYYMMDD.")
+    return processed_df

@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 import os
 import glob
 import findspark
-findspark.init() # Mantenha aqui!
+findspark.init()
 from pyspark.sql import SparkSession
 
 from src.utils.db_utils import get_mysql_connection, query_string, load_dataframe_to_mysql 
@@ -70,7 +70,7 @@ if __name__ == "__main__":
 
             # --- Carregar DataFrames para MySQL ---
             print("\n--- Etapa 5/5: Carregando DataFrames para o MySQL ---")
-            for year, df_to_load in all_dfs.items():
+            for year, df_to_load in all_dfs.items(): # type: ignore
                 table_mysql_name = f'tab_chegadas_turistas_{year}'
                 print(f"Carregando dados para a tabela '{table_mysql_name}' (Ano: {year})...")
                 # A função load_dataframe_to_mysql espera o DataFrame PySpark, não a conexão DB.
@@ -101,7 +101,7 @@ if __name__ == "__main__":
 
         # --- Parada da SparkSession ---
         if spark_app_session:
-            spark_app_session.stop()
+            spark_app_session.stop() # type: ignore
             print("SparkSession encerrada com sucesso.")
         else:
             print("SparkSession não foi inicializada, nada para encerrar.")

@@ -6,6 +6,10 @@ from pyspark.sql import DataFrame
 # src/utils/db_utils.py
 
 
+# Exemplo de uso:
+# hoje = dia_de_hoje()
+# print(hoje) # Irá imprimir algo como "20250629" se for executado hoje
+
 def get_connection_details():
     """
     Constrói e retorna a URL JDBC do MySQL e um dicionário de propriedades de conexão

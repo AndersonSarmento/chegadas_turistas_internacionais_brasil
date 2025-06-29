@@ -2,7 +2,7 @@
 
 ## Chegadas de Turistas Internacionais no Brasil
 
-Este projeto é um pipeline de engenharia de dados, utilizando extrações do [Dataset Chegadas Turistas Internacionais do Brasil](https://dados.gov.br/dados/conjuntos-dados/estimativas-de-chegadas-de-turistas-internacionais-ao-brasil) disponível no [GOV.BR](https://www.gov.br/pt-br) e tecnologias como **Apache Airflow**, **PySpark** para transformar os dados em camadas `Landing Zone`, `Raw/Bronze`, `Trusted/Silver` e `Refined/Gold`, com foco no consumo via [**Streamlit**](https://streamlit.io/).
+Este projeto é um pipeline de engenharia de dados, utilizando extrações do [Dataset Chegadas Turistas Internacionais do Brasil](https://dados.gov.br/dados/conjuntos-dados/estimativas-de-chegadas-de-turistas-internacionais-ao-brasil) disponível no [GOV.BR](https://www.gov.br/pt-br) e tecnologias como **Mysql**, **PySpark** e **Python** para transformar os dados em camadas `Landing Zone`, `Raw/Bronze`, `Trusted/Silver` e `Refined/Gold`, com foco no consumo via [**Streamlit**](https://streamlit.io/).
 
 ## Sobre o Dataset
 
@@ -13,3 +13,8 @@ As bases de dados são formadas por registros administrativos de migração cole
 ## Diagrama do Projeto
 
 ![Diagrama do Projeto](https://github.com/AndersonSarmento/chegadas_turistas_internacionais_brasil/blob/main/imagens/desenho_de_solucao.png)
+
+
+## Referências
+
+Artigo: [arquitetura medallion](https://www.databricks.com/br/glossary/medallion-architecture)
